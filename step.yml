@@ -1,0 +1,63 @@
+
+
+title: |-
+  appium-snaphot-tests
+summary: |
+  Appium Snaphot Testing
+description: |
+  Runs snapshot tests against screenshots generated during Appium tests and ones saved as originals.
+website: https://github.com/Siemian/bitrise-step-appium-snaphot-tests
+source_code_url: https://github.com/Siemian/bitrise-step-appium-snaphot-tests
+support_url: https://github.com/Siemian/bitrise-step-appium-snaphot-tests/issues
+host_os_tags:
+  - osx-10.10
+  - ubuntu-16.04
+
+project_type_tags:
+  - ios
+  - android
+
+type_tags:
+  - test
+
+is_requires_admin_user: false
+is_always_run: false
+is_skippable: false
+run_if: ""
+
+deps:
+  brew:
+  - name: git
+  - name: wget
+  apt_get:
+  - name: git
+  - name: wget
+
+
+toolkit:
+  bash:
+    entry_file: step.sh
+
+
+inputs:
+  - screenshots_directory: 
+    opts:
+      title: "Screenshots directory"
+      summary: Directory that contains original images and screenshots.
+      description: |
+        Original image should be postfixed with `_original` specifier i.e. mainMenu_original.png.
+        Screenshot should be present in the same directory with the same name without `_original` postfix: mainMenu.png.
+      is_expand: true
+      is_required: true
+      value_options: []
+
+  - export_failed_artifacts: 
+    opts:
+      title: "Export Failed Artifacts"
+      summary: Should failed resource be availble to download.
+      description: |
+        Boolean variable indicating if result images for screenshosts that failed validation should be exported to Bitrise artifacts section.
+        Default value is true.
+      is_expand: true
+      is_required: false
+      value_options: []
