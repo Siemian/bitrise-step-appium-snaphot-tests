@@ -33,7 +33,7 @@ do
 	convert $screenshot -gravity North -chop 0x40 $screenshot
 
 	# compare images using pixelmatch
-	command=`$PWD/pixelmatch/bin/pixelmatch $file $screenshot $resultFile 0.1`
+	command=`pixelmatch $file $screenshot $resultFile 0.1`
 	matchResult=`echo $command | sed 's/.*error: \([0-9.]*\).*/\1/'`
 	if [[ $matchResult != "0" ]]; then
 		echo "Match for $screenshot failed with error rate: $matchResult%"
