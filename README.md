@@ -13,6 +13,7 @@ Add step definition.
           inputs:
             - screenshots_directory: "SnapshotTests"
             - export_failed_artifacts: true
+            - match_threshold: 0.1
 ```
 
 ## About

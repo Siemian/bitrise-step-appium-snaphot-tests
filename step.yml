@@ -61,3 +61,15 @@ inputs:
       is_expand: true
       is_required: false
       value_options: []
+
+  - match_threshold: 
+    opts:
+      title: "Match threshold"
+      summary: Threshold used when comparing images.
+      description: |
+        This value controlls threshold when comparing images, match error equal or below threshold will be considered as success. 
+        It's represented as percetage value. Where 1% means that 1% of the compared pictures are different.
+        Default value is 0
+      is_expand: true
+      is_required: false
+      value_options: []

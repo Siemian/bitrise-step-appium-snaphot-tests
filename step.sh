@@ -8,6 +8,10 @@ if [ -z "$export_failed_artifacts" ]; then
 	export_failed_artifacts=true
 fi
 
+if [ -z "$match_threshold" ]; then
+	match_threshold=0.0
+fi
+
 originals=()
 cd $screenshots_directory
 
@@ -35,11 +39,12 @@ do
 	# compare images using pixelmatch
 	command=`pixelmatch $file $screenshot $resultFile 0.1`
 	matchResult=`echo $command | sed 's/.*error: \([0-9.]*\).*/\1/'`
-	if [[ $matchResult != "0" ]]; then
+
+	if [ 1 -eq "$(echo "${match_threshold} >= ${matchResult}" | bc)" ]; then  
+	    echo "Successful match for $screenshot"
+	else
 		echo "Match for $screenshot failed with error rate: $matchResult%"
 		failed+=($resultFile)
-	else
-		echo "Successful match for $screenshot"
 	fi
 done
 
