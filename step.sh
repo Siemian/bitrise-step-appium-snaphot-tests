@@ -38,6 +38,8 @@ do
 	if [ $matchResult != "0" ]; then
 		echo "Match for $screenshot failed with error rate: $matchResult%"
 		failed+=($resultFile)
+	else
+		echo "Successful match for $screenshot"
 	fi
 done
 
