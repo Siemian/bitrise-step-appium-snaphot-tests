@@ -1,6 +1,6 @@
 #!/bin/bash
 # install required package
-npm install -g pngjs
+npm install -g pixelmatch
 
 # Check for optional params
 
@@ -10,8 +10,6 @@ fi
 
 originals=()
 cd $screenshots_directory
-git clone git@github.com:mapbox/pixelmatch.git
-
 
 # retrieve all original images that are stored
 for f in *
@@ -37,7 +35,7 @@ do
 	# compare images using pixelmatch
 	command=`$PWD/pixelmatch/bin/pixelmatch $file $screenshot $resultFile 0.1`
 	matchResult=`echo $command | sed 's/.*error: \([0-9.]*\).*/\1/'`
-	if [ $matchResult != "0" ]; then
+	if [[ $matchResult != "0" ]]; then
 		echo "Match for $screenshot failed with error rate: $matchResult%"
 		failed+=($resultFile)
 	else
@@ -46,11 +44,11 @@ do
 done
 
 # If all matches succeeded return with success.
-if [ ${#failed[@]} == 0 ]; then 
+if [[ ${#failed[@]} == 0 ]]; then 
 	exit 0
 fi
 
-if [ $export_failed_artifacts = true ]; then 
+if [[ $export_failed_artifacts = true ]]; then 
 	newDir=$BITRISE_DEPLOY_DIR/$one
 	for one in "${failed[@]}"
 	do 
