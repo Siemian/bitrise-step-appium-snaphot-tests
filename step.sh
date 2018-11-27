@@ -1,4 +1,6 @@
 #!/bin/bash
+# install required package
+npm install -g pngjs
 
 # Check for optional params
 
