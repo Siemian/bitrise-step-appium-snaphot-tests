@@ -8,7 +8,7 @@ Add step definition.
 ```YML
  appium-snapshot-tests:
     steps:
-      - git::https://github.com/Siemian/bitrise-step-appium-snaphot-tests:
+      - git::https://github.com/netguru/bitrise-step-appium-snaphot-tests:
           title: Appium Snapshot Tests
           inputs:
             - screenshots_directory: "SnapshotTests"
