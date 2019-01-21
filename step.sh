@@ -57,7 +57,7 @@ if [[ $export_failed_artifacts = true ]]; then
 	newDir=$BITRISE_DEPLOY_DIR/$one
 	for one in "${failed[@]}"
 	do 
-		mv $one $newDir
+		cp $one $newDir
 	done
 fi
 
